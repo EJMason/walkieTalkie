@@ -1,13 +1,9 @@
 import React from 'react'
 import axios from 'axios'
 
-import Chat from './chat/Chat'
+import ChatBody from './chats/ChatBody'
 import LoginSignupView from './login/LoginSignupView'
 import ViewNavBar from './topBar/ViewNavbar'
-
-//import Chatroom from './Chatroom'
-//import ChatSelection from './ChatSelection'
-
 
 class App extends React.Component {
   constructor(props){
@@ -131,7 +127,6 @@ class App extends React.Component {
    })
   }
 
-
   render() {
     let navBarProps =  {
       logout : this.handleUserLogout,
@@ -151,37 +146,18 @@ class App extends React.Component {
 
     let NavBar = <ViewNavBar {...navBarProps}/>
     let Login = <LoginSignupView userSignupLogin = {this.handleUserSignupLogin} />
-    let Chat = <Chat {...chatProps}/>
-    
+    let Chat = <ChatBody {...chatProps}/>
+ 
     if (this.state.mounted) {
       return (
         <div>
           {NavBar}
-          this.state.LoginSignupView ? {Login} : {Chat}
+          {(this.state.login_signup_view) ? Login : Chat}
         </div>
       )
     } else {
       return null;
     }
-    
-    // if (this.state.mounted){
-    //   if (this.state.login_signup_view) {
-    //     b = (<LoginSignupView userSignupLogin = {this.handleUserSignupLogin}/>)
-    //   } else {
-    //     if (this.state.chat_view) {
-    //       c = (<Chatroom roomChange = {this.handleRoomChange} 
-    //               userId = {this.state.userId} 
-    //               roomId = {this.state.roomId} 
-    //               name = {this.state.name} 
-    //               searchResults = {this.state.roomSearch}/>)
-    //     } else {
-    //       c = (<ChatSelection selectRoom = {this.handleChatSelection}/>)
-    //     }
-    //   }
-    // } else {
-    //   a = (<div></div>)
-    // }
-
   }
 }
 
