@@ -1,5 +1,6 @@
 const defaultProps = {
   roomname: '',
+  messages: [],
 };
 
 export default function reducer(state = defaultProps, action) {
